@@ -9,7 +9,7 @@ print(x)    # -25  WHY???
 x = (-5) ** 2
 print(x)    # 25
 
-print(bool(1), bool(0), bool(1.0), bool(0.0))     # True False True False
+print(bool(1), bool(1.0), bool(0), bool(0.0))     # True True False False
 
 print(int(98.88), int(1.0e4))           # 98 10000
 
