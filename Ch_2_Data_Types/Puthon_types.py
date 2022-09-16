@@ -18,7 +18,8 @@ s = """
 
 
 def replace_sep_in_sting(string):
-    print(' '.join(string.split('.')))
+    out_string = ' '.join(string.split('.'))
+    print(out_string.replace('  ', '. ').strip() + '.')
 
 
 replace_sep_in_sting(s)
