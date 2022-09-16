@@ -1,4 +1,13 @@
-from Ch_2_Data_Types.Puthon_types import replace_sep_in_sting as func
+from Ch_2_Data_Types.Python_types import replace_sep_in_sting
+
+
+replace_sep_in_sting("""""")
+
+"""
+Булевы операторы имеют более низкий приоритет по сравнению с фрагментами 
+кода, которые они сравнивают. Это значит, что результаты фрагментов сначала вычисляются, а затем сравниваются.
+самый простой способ избежать путаницы — использовать круглые скобки: (5 < x) and (x < 10).
+"""
 
 
 

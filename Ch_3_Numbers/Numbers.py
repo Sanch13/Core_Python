@@ -1,4 +1,4 @@
-from Ch_2_Data_Types.Puthon_types import replace_sep_in_sting as func
+from Ch_2_Data_Types.Python_types import replace_sep_in_sting
 
 
 x = -5 ** 2
@@ -24,7 +24,7 @@ print(int('88'), int('-23'), int('+45'), int('9_123_045'))    # 88 -23 45 912304
 точкой, — цифры, знаки, десятичную точку и знак е с показателем степени"""
 print(float('88.6'), float('-2.3'), float('9_123_045'), float('1.0e4'))    # 88.6 -2.3 9123045.0 10000.0
 
-func('')
+replace_sep_in_sting("""""")
 
 
 
