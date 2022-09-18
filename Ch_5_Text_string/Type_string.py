@@ -57,12 +57,93 @@ thing = 'woodchuck', place = 'lake'
 >>> 'The {thing} is in the {place}'.format(thing='duck', place='bathtub')
 'The duck is in the bathtub'
 
-Они также могут быть словарями: d = {'thing': 'duck', 'place': 'bathtub'}
+Они также могут быть словарями: d = {'thing': '5', 'place': 'bathtub'}
 В следующем примере {0} — это первый аргумент функции format() (словарь d ):
-'The {0[thing]} is in the {0[place]}.'.format(d)
+'The {0[thing]:.02} is in the {0[place]}.'.format(d)
 'The duck is in the bathtub.'
 
 """
+
+thing = 'wereduck'
+place = 5
+
+print(f'The {thing:>20} is in the {place:.^20}')
+print(f'The {thing:>.4} is in the {place:03}')
+
+
+#            Tasks                   Tasks                   Tasks               #
+"""Напишите с заглавной буквы слово, которое начинается с буквы m:"""
+song = """When an eel grabs your arm,
+... And it causes great harm,
+... That's - a moray!"""
+print(*(word.capitalize() for word in song.strip(string.punctuation).split() if word[0] in 'm'))
+###################################################################################################
+"""Выведите на экран все вопросы из списка, а также правильные ответы в таком 
+виде:
+Q: вопрос
+A: ответ
+"""
+questions = [
+    "We don't serve strings around here. Are you a string?",
+    "What is said on Father's Day in the forest?",
+    "What makes the sound 'Sis! Boom! Bah!'?"
+]
+answers = [
+    "An exploding sheep.",
+    "No, I'm a frayed knot.",
+    "'Pop!' goes the weasel."
+]
+for i in range(len(questions)):
+    print(f'Q: {questions[i]}', f'\nA: {answers[i]}')
+###################################################################################################
+"""Выведите на экран следующее стихотворение, используя старый стиль форматирования.
+Подставьте в него такие строки: 'roast beef', 'ham', 'head' и 'clam':"""
+# My kitty cat likes %s,
+# My kitty cat likes %s,
+# My kitty cat fell on his %s
+# And now thinks he's a %s.
+print('My kitty cat likes %s,' % 'roast beef', 'My kitty cat likes %s,' % 'ham', sep='\n')
+print('My kitty cat fell on his %s' % 'head', "And now thinks he's a %s." % 'clam', sep='\n')
+###################################################################################################
+"""Напишите письмо с использованием нового стиля форматирования. Сохраните 
+предложенную строку в переменной letter (она понадобится вам в упражнении 
+ниже):"""
+salutation = 'Hey'
+name = "Sanch"
+product = "phone"
+verbed = "sold"
+room = "bathroom"
+animals = "Cats"
+percent = 100
+spokesman = "Artur"
+job_title = "Chief"
+amount = 20
+letter = f"""Dear {salutation} {name},
+Thank you for your letter. We are sorry that our {product}
+{verbed} in your {room}. Please note that it should never
+be used in a {room}, especially near any {animals} 
+Send us your receipt and {amount} for shipping and handling 
+We will send you another {product} that, in our tests,
+is {percent}% less likely to have {verbed} 
+Thank you for your support 
+Sincerely,
+{spokesman}
+{job_title}.
+My word! A gentleman caller!
+What the
+What in tarnation"""
+print(letter)
+###################################################################################################
+"""После проведения публичных опросов с целью выбора имени появились: английская подводная лодка 
+Boaty McBoatface, австралийская беговая лошадь Horsey McHorseface и шведский поезд 
+Trainy McTrainface. Используйте форматирование с символом % для того, чтобы вывести 
+на экран победившие имена для утки, тыквы и шпица 
+5 7.  Сделайте то же самое с помощью функции format() 
+5 8.  А теперь еще раз с использованием f-строк."""
+print("Победившие имена %s, %s и %s" % ('Boaty McBoatface', 'Horsey McHorseface', 'Trainy McTrainface'))
+print("Победившие имена {}, {} и {}".format('Boaty McBoatface', 'Horsey McHorseface', 'Trainy McTrainface'))
+print(f"Победившие имена {'Boaty McBoatface'}, {'Horsey McHorseface'} и {'Trainy McTrainface'}")
+
 
 
 
