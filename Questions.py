@@ -2,7 +2,7 @@
 затем выполнится тот, что находится сразу над ним."""
 
 
-def document_it(func):
+def document_it(func):                  # Decorate
     def function_1(*args, **kwargs):
         print('Running function:', func.__name__)
         print('Positional arguments:', args)
@@ -13,7 +13,7 @@ def document_it(func):
     return function_1
 
 
-def square_it(func):
+def square_it(func):                    # Decorate
     def function_2(*args, **kwargs):
         result = func(*args, **kwargs)
         print('I am working')
