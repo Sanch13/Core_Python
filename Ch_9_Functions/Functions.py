@@ -433,15 +433,42 @@ def good():
 ###################################################################################################
 """9.2. Определите функцию генератора get_odds(), которая возвращает нечетные числа из диапазона 
 range(10). Используйте цикл for, чтобы найти и вывести третье возвращенное значение."""
-
-
 def get_odds():
     for i in range(10):
         if i % 2 == 1:
             yield i
 
+# list(get_odds())[2]  # 5 my version
+# count = 1
+# for number in get_odds():
+#     if count == 3:
+#         print("The third odd number is", number)    # 5
+#         break
+#     count += 1
+###################################################################################################
+"""9.3. Определите декоратор test, который выводит строку 'start' при вызове функции и строку 
+'end', когда функция завершает свою работу."""
 
-for _ in range(3):
-    get_odds()
-else:
-    print(next(get_odds()))
+
+def test(func):
+    def wrapper(*args, **kwargs):
+        print('start')
+        result = func(*args, **kwargs)
+        print('end')
+        return result
+    return wrapper
+
+@test
+def func():
+    return
+
+# func()
+###################################################################################################
+class OopsException(Exception):
+    pass
+
+# raise OopsException()   # raise exception
+# try:
+#     raise OopsException()
+# except OopsException:
+#     print("Caught an oops")
