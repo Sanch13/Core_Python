@@ -41,28 +41,25 @@ print(setup.rjust(100))		# in the right
 # %g Число с плавающей точкой в восьмеричной системе счисления
 # %% Символ %
 
-"""
-Новый стиль форматирования имеет вид <строка.format(данные)>.
+"""Новый стиль форматирования имеет вид <строка.format(данные)>.
 Аргументы функции format() должны идти в том порядке, в котором расставлены заполнители {}
- в строке формата. 
-thing = 'woodchuck', place = 'lake'
->>> 'The {} is in the {}.'.format(thing, place)
+ в строке формата."""
+# thing = 'woodchuck', place = 'lake'
+# 'The {} is in the {}.'.format(thing, place)
 
-В новом стиле форматирования вы также можете указать позицию аргументов
-следующим образом: Значение 0 относится к первому аргументу place , а 1 — к thing .
->>> 'The {1} is in the {0}.'.format(place, thing)
-'The woodchuck is in the lake.'
+"""В новом стиле форматирования вы также можете указать позицию аргументов
+следующим образом: Значение 0 относится к первому аргументу place , а 1 — к thing ."""
+# 'The {1} is in the {0}.'.format(place, thing)   # 'The woodchuck is in the lake.'
 
-Аргументы функции format() могут быть именованными:
->>> 'The {thing} is in the {place}'.format(thing='duck', place='bathtub')
-'The duck is in the bathtub'
+"""Аргументы функции format() могут быть именованными:"""
+# 'The {thing} is in the {place}'.format(thing='duck', place='bathtub')
+# 'The duck is in the bathtub'
 
-Они также могут быть словарями: d = {'thing': '5', 'place': 'bathtub'}
-В следующем примере {0} — это первый аргумент функции format() (словарь d ):
-'The {0[thing]:.02} is in the {0[place]}.'.format(d)
-'The duck is in the bathtub.'
-
-"""
+"""Они также могут быть словарями: 
+В следующем примере {0} — это первый аргумент функции format() (словарь d ):"""
+# d = {'thing': '5', 'place': 'bathtub'}
+# 'The {0[thing]:.02} is in the {0[place]}.'.format(d)
+# 'The duck is in the bathtub.'
 
 thing = 'wereduck'
 place = 5
