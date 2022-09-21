@@ -1,57 +1,55 @@
 """Декоратор, размещенный ближе всего к функции (прямо над def), будет выполнен первым, а
 затем выполнится тот, что находится сразу над ним."""
 
+count = iter(range(1, 10))
 
-def document_it(func):                  # Decorate
-    def function_1(*args, **kwargs):
-        print('Running function:', func.__name__)
-        print('Positional arguments:', args)
-        print('Keyword arguments:', kwargs)
+
+def decorate_1(func):
+    def wrapper_1(*args, **kwargs):
+        print(f'Do it {next(count)}, I am decorate_1')
         result = func(*args, **kwargs)
-        print('Result:', result)
+        print(f'Do it {next(count)}, decorate_1 have finished')
         return result
-    return function_1
+    return wrapper_1
 
 
-def square_it(func):                    # Decorate
-    def function_2(*args, **kwargs):
+def decorate_2(func):
+    def wrapper_2(*args, **kwargs):
+        print(f'Do it {next(count)}, I am decorate_2')
         result = func(*args, **kwargs)
-        print('I am working')
-        return f"This is a result two decorate {result ** 2}"
-    return function_2
+        print(f'Do it {next(count)}, decorate_2 have finished')
+        return result
+    return wrapper_2
 
 
-"""The first way"""
+@decorate_2
+@decorate_1
+def say_word_times(words, times):
+    print(f'I say {words * times}')
+
+say_word_times('Hey', 3)
+
+# Do it 1, I am decorate_2
+# Do it 2, I am decorate_1
+# I say HeyHeyHey
+# Do it 3, decorate_1 have finished
+# Do it 4, decorate_2 have finished
 
 
-@document_it
-@square_it
-def add_ints(a, b):
-    return a + b
-
-
-add_ints(3, 5)
-
-
-# Running function: function_2
-# Positional arguments: (3, 5)
-# Keyword arguments: {}
-# Result: This is two decorate 64
-# This is two decorate 64
-
-
-"""The second way"""
-
-# @square_it
-# @document_it
-# def add_ints(a, b):
-#     return a + b
+# @decorate_1
+# @decorate_2
+# def say_word_times(words, times):
+#     print(f'I say {words * times}')
 #
-#
-# print(add_ints(3, 5))
-#
-# Running function: add_ints
-# Positional arguments: (3, 5)
-# Keyword arguments: {}
-# Result: 8
-# This is two decorate 64
+# say_word_times('Hey', 3)
+
+# Do it 1, I am decorate_1
+# Do it 2, I am decorate_2
+# I say HeyHeyHey
+# Do it 3, decorate_2 have finished
+# Do it 4, decorate_1 have finished
+
+
+
+
+
