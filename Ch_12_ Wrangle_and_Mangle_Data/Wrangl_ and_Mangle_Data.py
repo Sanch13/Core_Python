@@ -111,6 +111,7 @@ printable = string.printable
 # ''.join(re.findall('\w', printable))
 # 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_
 """Шаблоны: использование спецификаторов"""
+# \b	Граница слова
 source = '''I wish I may, I wish I might. Have a dish of fish tonight.'''
 """Начнем с поиска символов w или f, за которыми следует буквосочетание ish:"""
 re.findall('[wsh]+', source)    # ['w', 'sh', 'w', 'sh', 'h', 'sh', 'sh', 'h']
@@ -151,6 +152,50 @@ pop_bytes = mystery.encode('utf-8')
 pop_string = pop_bytes.decode('utf-8')
 # print(pop_string, pop_string == mystery)       # 💩 True
 ###################################################################################################
+"""12.4. При работе с текстом могут пригодиться регулярные выражения. 
+Назовите следующую строку mammoth:"""
+mammoth = """We have seen thee, queen of cheese,
+Lying quietly at your ease,
+Gently fanned by evening breeze,
+Thy fair form no flies dare seize.
+All gaily dressed soon you'll go
+To the great Provincial show,
+To be admired by many a beau
+In the city of Toronto.
+Cows numerous as a swarm of bees,
+Or as the leaves upon the trees,
+It did require to make thee please,
+And stand unrivalled, queen of cheese.
+May you not receive a scar as
+We have heard that Mr. Harris
+Intends to send you off as far as
+The great world's show at Paris.
+Of the youth beware of these,
+For some of them might rudely squeeze
+And bite your cheek, then songs or glees
+We could not sing, oh! queen of cheese.
+We'rt thou suspended from balloon,
+You'd cast a shade even at noon,
+Folks would think it was the moon
+About to fall and crush them soon."""
+###################################################################################################
+"""12.5. Импортируйте модуль re, чтобы использовать функции регулярных выражений в Python.
+Примените функцию re.findall() для вывода на экран всех слов, начинающихся с буквы с."""
+# print(re.findall(r'\bc\w*', mammoth))
+# ['cheese', 'city', 'cheese', 'cheek', 'could', 'cheese', 'cast', 'crush']
+###################################################################################################
+"""12.6. Найдите все четырехбуквенные слова, которые начинаются с буквы c."""
+# print(re.findall(r'\bc\w{3}\b', mammoth))   # ['city', 'cast']
+###################################################################################################
+"""12.7. Найдите все слова, которые заканчиваются на букву r."""
+# print(re.findall(r'\w*r\b', mammoth))       # my version
+# ['your', 'fair', 'Or', 'scar', 'Mr', 'far', 'For', 'your', 'or']
+# print(re.findall(r'\b\w*r\b', mammoth))     # the version is book
+###################################################################################################
+"""12.8. Найдите все слова, которые содержат три гласные подряд."""
+print(re.findall(r'\b\w*[eioau]{3}[^eioau\s]*\w*\b', mammoth))       # my version
+
+
 
 
 
