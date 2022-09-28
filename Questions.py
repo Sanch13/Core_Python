@@ -122,3 +122,6 @@ def decorate2(func):
 #
 #
 # print(add_text('Sanch', "Ksenyia"))  # Sanch + Ksenyia I am decorate2  I am decorate1
+###################################################################################################
+# page 161
+# page 305 --> function do_this() ???
