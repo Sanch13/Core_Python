@@ -125,3 +125,10 @@ def decorate2(func):
 ###################################################################################################
 # page 161
 # page 305 --> function do_this() ???
+# import json
+# lst = [(1, 2), (2, 3), (4, 5), (6, 7), (8, 9)]
+# a_json = json.dumps(lst)
+# print(a_json)
+# b_json = json.loads(a_json)
+# print(b_json)
+
