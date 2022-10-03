@@ -188,6 +188,7 @@ Object Data Manager или Object Document Mapper. ODM является доку
 данные в формате JSON с полным индексированием и запросами."""
 
 # TASKS   TASKS   TASKS   TASKS   TASKS   TASKS   TASKS   TASKS   TASKS   TASKS   TASKS   TASKS
+
 """16.1. Сохраните следующие несколько строк в файл books.csv. Обратите внимание на то, что, если
 поля разделены запятыми, вам нужно заключить в кавычки поле, содержащее запятую:
 author,book
@@ -206,10 +207,77 @@ with open('books.csv', 'wt') as file:
 кавычки и запятые в заголовке второй книги?
 """
 import csv
-with open('books.csv', 'rt') as file:
-    books = csv.DictReader(file)
-    values = [value.get('book') for value in books]
+# with open('books.csv', 'rt') as file:
+#     books = csv.DictReader(file)
+#     values = [value.get('book') for value in books]
 # print(values)   # ['The Hobbit', 'Eats, Shoots & Leaves']
 ###################################################################################################
-
-
+"""16.3. Создайте CSV-файл books1.csv и запишите его в следующие строки:
+title,author,year
+The Weirdstone of Brisingamen,Alan Garner,1960
+Perdido Street Station,China Miéville,2000
+Thud!,Terry Pratchett,2005
+The Spellman Files,Lisa Lutz,2007
+Small Gods,Terry Pratchett,1992"""
+# books = """title,author,year
+# The Weirdstone of Brisingamen,Alan Garner,1960
+# Perdido Street Station,China Miéville,2000
+# Thud!,Terry Pratchett,2005
+# The Spellman Files,Lisa Lutz,2007
+# Small Gods,Terry Pratchett,1992"""
+# with open('books1.csv', 'wt', encoding='utf-8') as file:
+#     file.write(books)
+###################################################################################################
+"""16.4. Используйте модуль sqlite3, чтобы создать базу данных SQLite books.db и таблицу books1,
+содержащую следующие поля: title (текст), author (текст) и year (целое число)."""
+"""16.5. Считайте данные из файла books1.csv и добавьте их в таблицу books."""
+import sqlite3
+conn = sqlite3.connect('books.db')
+curs = conn.cursor()
+curs.execute("""CREATE TABLE IF NOT EXISTS books
+             (title VARCHAR(50) PRIMARY KEY,
+             author VARCHAR(50),
+             year INT)""")
+ins = 'INSERT INTO books (title, author, year) VALUES(?, ?, ?)'
+### ins_str = 'insert into books values(?, ?, ?)' # from books
+with open('books1.csv', 'rt', encoding='utf-8') as file:
+    data = csv.DictReader(file)
+    data_in_bd = [(row.get('title'), row.get('author'), int(row.get('year'))) for row in data]
+    for data in data_in_bd:
+        curs.execute(ins, data)
+print(curs.execute("SELECT * FROM books").fetchall())
+# [
+# ('The Weirdstone of Brisingamen', 'Alan Garner', 1960),
+# ('Perdido Street Station', 'China Miéville', 2000),
+# ('Thud!', 'Terry Pratchett', 2005),
+# ('The Spellman Files', 'Lisa Lutz', 2007),
+# ('Small Gods', 'Terry Pratchett', 1992)
+# ]
+###################################################################################################
+"""16.6. Считайте и выведите на экран столбец title таблицы book в алфавитном порядке."""
+# print(*curs.execute("SELECT title FROM books").fetchall())
+# ('Perdido Street Station',)
+# ('Small Gods',)
+# ('The Spellman Files',)
+# ('The Weirdstone of Brisingamen',)
+# ('Thud!',)
+###################################################################################################
+"""16.7. Считайте и выведите на экран все столбцы таблицы book в порядке публикации."""
+# print(curs.execute('SELECT year, title, author FROM books ORDER BY year').fetchall())
+# [
+# (1960, 'The Weirdstone of Brisingamen', 'Alan Garner'),
+# (1992, 'Small Gods', 'Terry Pratchett'),
+# (2000, 'Perdido Street Station', 'China Miéville'),
+# (2005, 'Thud!', 'Terry Pratchett'),
+# (2007, 'The Spellman Files', 'Lisa Lutz')
+# ]
+curs.close()
+conn.close()
+###################################################################################################
+"""16.8. Используйте модуль sqlalchemy, чтобы подключиться к базе данных sqlite3 books.db, 
+которую вы создали в упражнении 16.4. Как и в упражнении 16.6, считайте и выведите на экран
+столбец title таблицы book в алфавитном порядке."""
+import sqlalchemy as sa
+conn_2 = sa.create_engine('sqlite:///books.db')
+rows = conn_2.execute('SELECT title FROM books')
+print([elem for elem in rows])
