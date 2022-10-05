@@ -180,13 +180,59 @@ HTTP имеет имя http, ему присвоен номер порта TCP 8
 многословным в отличие от ряда бинарных методов сериализации. 
 """
 
+"""Сериализация с помощью pickle
+Python предоставляет модуль pickle, позволяющий сохранить и восстановить любой
+объект в специальном бинарном формате."""
+import pickle
+import datetime
+now = datetime.datetime.now()
+pickled = pickle.dumps(now)
+out_now = pickle.loads(pickled)
+# print(type(pickled))    # <class 'bytes'>
+# print(out_now)  2022-10-05 19:40:55.180189
+"""Модуль pickle работает и с вашими классами и объектами."""
+class Tiny():
+    def __str__(self):
+        return 'tiny'
 
+obj = Tiny()
+# print(type(obj), str(obj))    # <class '__main__.Tiny'> tiny
+pickled_1 = pickle.dumps(obj)
+"""Строка pickled_1 — это обработанная pickle бинарная строка, созданная из объекта obj"""
+# print(pickled_1)
+# b'\x80\x04\x95\x18\x00\x00\x00\x00\x00\x00\x00\x8c\x08__main__\x94\x8c\x04Tiny\x94\x93\x94)\x81\x94.'
+obj2 = pickle.loads(pickled_1)
+"""Используйте функцию dump(), чтобы pickle сохранил данные в файл, и функцию load(), 
+чтобы pickle загрузил данные из файла."""
+# print(obj2)  # tiny
+"""Если модуль pickle не может сериализовать ваш формат данных, то с ним, возможно, справится
+более новый сторонний пакет dill (https://pypi.org/project/dill)."""
 
-
-
-
-
-
+"""Другие форматы сериализации
+Есть и другие бинарные форматы обмена данными, они обычно компактнее и быстрее, чем XML или JSON:
+- MsgPack (http://msgpack.org/);
+- Protocol Buffers (https://code.google.com/p/protobuf);
+- Avro (http://avro.apache.org/docs/current);
+- Thrift (http://thrift.apache.org/);
+- Lima (https://lima.readthedocs.io/);
+- Serialize (https://pypi.org/project/Serialize) — это фронтенд Python для других форматов,
+    включающих JSON, YAML, pickle и MsgPack;
+- Бенчмарк (https://oreil.ly/S3ESH) различных пакетов сериализации для Python.
+Поскольку они бинарные, ни один из них не может быть изменен человеком, вооружившимся текстовым
+редактором. Некоторые сторонние пакеты выполняют двухстороннюю конвертацию объектов
+и простых типов данных Python (что позволяет преобразовывать их в такие форматы, как JSON), 
+а также могут выполнять валидацию таких категорий:
+- типы данных;
+- диапазоны значений;
+- обязательные и необязательные данные.
+Ниже представлены некоторые из этих пакетов:
+- Marshmallow (https://marshmallow.readthedocs.io/en/3.0);
+- Pydantic (https://pydantic-docs.helpmanual.io/) — использует подсказки для типов,
+поэтому требует версии Python не ниже 3.6;
+- TypeSystem (https://www.encode.io/typesystem).
+Эти пакеты зачастую используются вместе с веб-серверами для гарантии того,
+что байты, которые попали к ним по протоколу HTTP, отправятся в правильные
+структуры данных для дальнейшей обработки."""
 
 
 
