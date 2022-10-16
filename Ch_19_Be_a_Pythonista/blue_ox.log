@@ -2,3 +2,6 @@ DEBUG:bunyan:Where's my axe?
 WARNING:bunyan:I need my axe
 DEBUG:bunyan:Where's my axe?
 WARNING:bunyan:I need my axe
+2022-10-16 20:54:27,248 ERROR 316 Where's my other plaid shirt?
+2022-10-16 20:56:34,302 ERROR 316 - Where's my other plaid shirt?
+2022-10-16 20:56:57,575 | ERROR | 316 | Where's my other plaid shirt?
