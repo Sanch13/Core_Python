@@ -355,5 +355,59 @@ timeit.timeit(код, число, количество_раз) .
 вместо них.
 """
 
+"""Алгоритмы и структуры данных
+Дзен Python (http://bit.ly/zen-py) гласит: «Должен существовать один, и желательно только один, 
+очевидный способ сделать это». К сожалению, иногда способ не является очевидным и вам приходится 
+сравнивать альтернативные варианты. Например, что лучше использовать для создания списка: цикл 
+for или включение списка? И что на самом деле значит «лучше»: быстрее, проще для понимания, 
+менее затратно по ресурсам или более характерно для Python? В следующем упражнении мы создадим 
+список разными способами, сравнив скорость, читабельность и стиль. Смотрите файл time_lists.py.
+В каждой функции мы добавляем в список 1000 элементов и вызываем каждую функцию 1000 раз. 
+Обратите внимание: в этом тесте мы вызываем функцию timeit(), передавая ей имя функции в качестве 
+первого аргумента вместо кода. Включение списка отработало как минимум в два раза быстрее, чем 
+добавление элементов в список с помощью функции append(). Как правило, включение быстрее, 
+чем создание вручную.
+"""
 
+"""Книги
+Я обнаружил, что книги, представленные в следующем списке, особенно полезны. Их уровень 
+варьируется от начального до продвинутого, в них описываются и Python 2, и Python 3.
+- Бизли Д., Джонс Б. Python. Книга рецептов. — М.: ДМК-Пресс, 2020.
+- Рейтц К., Шлюссер Т. Автостопом по Python. — СПб.: Питер, 2017.
+- Barry P. Head First Python (2nd Edition). — O’Reilly, 2016.
+- Beazley D. M. Python Essential Reference. 5th ed. — Addison-Wesley, 2019.
+- Gorelick M., Ozsvald I. High Performance Python. — O’Reilly, 2014.
+- Maxwell A. Powerful Python. — Powerful Python Press, 2017.
+- McKinney W. Python for Data Analysis: Data Wrangling with Pandas, NumPy and IPython. — 
+    O’Reilly, 2012.
+- Ramalho L. Fluent Python. — O’Reilly, 2015.
+- Slatkin B. Effective Python. — Addison-Wesley, 2015.
+- Summerfield M. Python in Practice: Create Better Programs Using Concurrency,
+    Libraries and Patterns. — Addison-Wesley, 2013.
+Конечно же, хороших книг гораздо больше (https://wiki.python.org/moin/PythonBooks)."""
 
+"""Сайты
+Вот несколько сайтов, где вы можете найти полезные руководства:
+- Python for You and Me (https://pymbook.readthedocs.io/) — введение в Python, в котором также 
+    рассматриваются нюансы работы с ОС Windows;
+- Real Python (http://realpython.com/) — многие авторы внесли свой вклад в создание
+    этих руководств;
+- Learn Python the Hard Way (http://learnpythonthehardway.org/book), автор Зед Шоу;
+- Dive Into Python 3 (https://oreil.ly/UJcGM), автор Марк Пилгрим;
+- Mouse Vs. Python (http://www.blog.pythonlibrary.org/), автор Майкл Дрисколл.
+Если вам интересно узнавать о том, что происходит в мире Python, то обратите внимание на эти 
+новостные сайты:
+- comp.lang.python (http://bit.ly/comp-lang-python);
+- comp.lang.python.announce (http://bit.ly/comp-lang-py-announce);
+- r/python subreddit (http://www.reddit.com/r/python);
+- Planet Python (http://planet.python.org/).
+Наконец, рассмотрим сайты, с которых можно скачать разнообразные пакеты:
+- The Python Package Index (https://pypi.python.org/pypi);
+- Awesome Python (https://awesome-python.com/);
+- Stack Overflow Python Questions (https://oreil.ly/S1vEL);
+- ActiveState Python recipes (http://code.activestate.com/recipes/langs/python);
+- Python packages trending on GitHub (https://github.com/trending?l=python)."""
+
+""" В зависимости от вашего местонахождения вы можете найти группы, увлекающиеся Python 
+(http://python.meetup.com/). Проводят встречи и местные пользовательские группы по всему миру 
+(https://wiki.python.org/moin/LocalUserGroups)."""
