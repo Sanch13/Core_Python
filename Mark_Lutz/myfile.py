@@ -19,5 +19,13 @@ def ffor():
     return squares
 
 
-print(timeit("list_comp()", globals=globals(), number=10000))
-print(timeit("ffor()", globals=globals(), number=10000))
+def concotinate():
+    squares = []
+    for x in tuple(range(1000)):
+        squares += [x]
+    return squares
+
+
+# print(timeit("list_comp()", globals=globals(), number=10000))
+# print(timeit("ffor()", globals=globals(), number=10000))
+# print(timeit("concotinate()", globals=globals(), number=10000))
