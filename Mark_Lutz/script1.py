@@ -26,4 +26,16 @@ def func():
 # print('Bye')
 
 
-print(func(), file=open(r'D:\Python39\Core_Python\txt.txt', 'a'))
+# print(func(), file=open(r'D:\Python39\Core_Python\txt.txt', 'a'))
+
+# items = ['aaa', 111, (4, 5), 2.01]
+# keys = [(4, 5), 3.14]
+#
+# for key in keys:
+#     for item in items:
+#         if key == item:
+#             print(key, f'was found')
+#             break
+#     else:
+#         print(key, f'was not found')
+
