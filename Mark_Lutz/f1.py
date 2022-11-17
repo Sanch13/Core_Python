@@ -121,5 +121,56 @@
 # print(*f(a, l))
 # print(a, l)
 
+# def f(a, b=8, *args, c=True, **kwargs):
+#     return a, b, args, c, kwargs
+#
+#
+# print(f(3, 4, 5, 6, l=1, j=4))
+# print(f(3, 123, 5, 6, l=1, j=4))
+# # s = 'spam'
+# print(f(*s))
+
+
+# def func(a, b=2, c=3):
+#     print(a,b, c)
+#
+# func(1)
+# func(a=10)
+# func(11, 88)
+# func(1, c=0)
+
+
+# def func(a=[]):
+#     a.append('surprise')
+#     return a
+#
+# print(func())
+# print(func())
+# print(func())
+
+def f(a, *b, c=6, **d): return (a, b, c, d)
+# print(f(1, 2, 3, x=4, y=5))
+# print(f(1, 2, 3, x=4, y=5, c=7))
+# print(f(1, 2, 3, c=7, x=4, y=5))
+# print(f(1, c=7, *(2, 3,),  x=4, y=5))
+# print(f(1, *(2, 3,),  x=4, y=5, c=7))
+
+
+
+# def f(a, *b, c=6, **d): return (a, b, c, d)
+# print(f(1, *(2, 3,), **dict(x=4, y=5)))
+# print(f(1, *(2, 3,), **dict(x=4, y=5), c=7))
+# print(f(1, *(2, 3,), c=7, **dict(x=4, y=5)))
+# print(f(1, c=7, *(2, 3,),  **dict(x=4, y=5)))
+
+
+
+
+
+
+
+
+
+
 
 
