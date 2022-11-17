@@ -82,22 +82,44 @@
 #
 # f1()
 
-def tester(start):
-    state = start
-    def nested(label):
-        nonlocal state  # запоминает из объемлющей области видимости
-        print(label, state)
-        state += 1      # нелокальную переменную разрешено изменять
-    return nested
+# def tester(start):
+#     state = start
+#     def nested(label):
+#         nonlocal state  # запоминает из объемлющей области видимости
+#         print(label, state)
+#         state += 1      # нелокальную переменную разрешено изменять
+#     return nested
 
 
+# def tester(start):
+#     def nested(label):
+#         print(label, nested.state)
+#         nested.state += 1
+#     nested.state = start
+#     return nested
 
+# l = [1,2,3,4,5]
+# print(l)
+#
+# def f(l):
+#     l += [0]
+#
+# f(l)
+# print(l)
 
-
-
-
-
-
+# l = [1,2]
+# a = 1
+#
+# def f(a, l):
+#     l = l[:]
+#     a = 2
+#     l[0] = 23
+#     return a, l
+#
+#
+# f(a, l)
+# print(*f(a, l))
+# print(a, l)
 
 
 
