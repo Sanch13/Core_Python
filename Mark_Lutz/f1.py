@@ -147,6 +147,8 @@
 # print(func())
 # print(func())
 # print(func())
+import sys
+
 
 def f(a, *b, c=6, **d): return (a, b, c, d)
 # print(f(1, 2, 3, x=4, y=5))
@@ -163,21 +165,33 @@ def f(a, *b, c=6, **d): return (a, b, c, d)
 # print(f(1, *(2, 3,), c=7, **dict(x=4, y=5)))
 # print(f(1, c=7, *(2, 3,),  **dict(x=4, y=5)))
 
-l = [1,2,3,3,4,5,6,7,3,3,8,9,0,2,4,5]
-p = (3,5,6,7,8)
-m = [4,3,6]
-def intersect(*args):
-    res = []
-    for x in args[0]:
-        if x in res: continue
-        for other in args[1:]:
-            if x not in other: break
-        else:
-            res.append(x)
-    return res
+# l = [1,2,3,3,4,5,6,7,3,3,8,9,0,2,4,5]
+# p = (3,5,6,7,8)
+# m = [4,3,6]
+# def intersect(*args):
+#     res = []
+#     for x in args[0]:
+#         if x in res: continue
+#         for other in args[1:]:
+#             if x not in other: break
+#         else:
+#             res.append(x)
+#     return res
+#
+# print(intersect(l, p, m))
 
-print(intersect(l, p, m))
 
+# def print3(*args, sep=' ', end='\n', file=sys.stdout):
+#     output = ''
+#     first = True
+#     for arg in args:
+#         output += ('' if first else sep) + str(arg)
+#         first = False
+#     file.write(output + end)
+#
+#
+# print3('sad', 'bad', 'cat', end='')
+# print('sad', 'bad', 'cat')
 
 
 
