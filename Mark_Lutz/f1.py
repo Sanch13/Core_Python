@@ -147,10 +147,10 @@
 # print(func())
 # print(func())
 # print(func())
-import sys
+# import sys
 
 
-def f(a, *b, c=6, **d): return (a, b, c, d)
+# def f(a, *b, c=6, **d): return (a, b, c, d)
 # print(f(1, 2, 3, x=4, y=5))
 # print(f(1, 2, 3, x=4, y=5, c=7))
 # print(f(1, 2, 3, c=7, x=4, y=5))
@@ -192,8 +192,88 @@ def f(a, *b, c=6, **d): return (a, b, c, d)
 #
 # print3('sad', 'bad', 'cat', end='')
 # print('sad', 'bad', 'cat')
+import sys
+from timeit import timeit
 
 
+# l = list(range(990))
+#
+#
+# def mysum(l):
+#     if not l:
+#         return 0
+#     else:
+#         return l[0] + mysum(l[1:])
+#
+#
+# def mysum2(l):
+#     return 0 if not l else l[0] + mysum2(l[1:])
+#
+#
+# def mysum3(l):
+#     sum = 0
+#     for x in l:
+#         sum += x
+#     return sum
+
+# print(round(timeit('mysum(l)', globals=globals(), number=1000), 5))   # 2.73014
+# print(round(timeit('mysum2(l)', globals=globals(), number=1000), 5))    # 2.72523
+# print(round(timeit('mysum3(l)', globals=globals(), number=1000), 5))    # 0.03165
+# print(round(timeit('sum(l)', globals=globals(), number=1000), 5))    # 0.00389
+
+# l = [[1,2], [[[[2,3], 5, 6]], 7,], [3, [5,6, [0,7,6]]]]
+#
+# def sumtree(l):
+#     total = 0
+#     for x in l:
+#         if not isinstance(x, list):
+#             total += x
+#         else:
+#             total += sumtree(x)
+#         # total += x if not isinstance(x, list) else sumtree(x)
+#     return total
+
+# print(sumtree(l))
+# print(round(timeit('sumtree(l)', globals=globals(), number=1000), 5))   # 0.00223
+
+
+# def sumtree2(l):
+#     total = 0
+#     items = list(l)
+#     while items:
+#         front = items.pop(0)
+#         if not isinstance(front, list):
+#             total += front
+#         else:
+#             items.extend(front)
+#     return total
+
+
+# print(sumtree2(l))
+# print(round(timeit('sumtree2(l)', globals=globals(), number=1000), 5))   # 0.00341
+
+
+# def sumtree3(l):
+#     total = 0
+#     items = list(l)
+#     while items:
+#         front = items.pop(0)
+#         if not isinstance(front, list):
+#             total += front
+#         else:
+#             items[:0] = front
+#     return total
+#
+#
+# # print(sumtree3(l))
+# print(round(timeit('sumtree3(l)', globals=globals(), number=1000), 5))   # 0.00467
+
+# import sys
+# from tkinter import Button, mainloop
+# butt = Button()
+# butt = Button(text='Press me', command=(lambda :sys.stdout.write('Spam\n')))
+# butt.pack()
+# mainloop()
 
 
 
