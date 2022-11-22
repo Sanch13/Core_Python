@@ -276,7 +276,20 @@ from timeit import timeit
 # mainloop()
 
 
+# seq = 'abc'
 
+
+# def permute2(seq):
+#     if not seq:
+#         yield seq
+#     else:
+#         for i in range(len(seq)):
+#             rest = seq[:i] + seq[i+1:]
+#             for x in permute2(rest):
+#                 yield seq[i:i+1] + x
+#
+#
+# print(list(permute2(seq)))
 
 
 
