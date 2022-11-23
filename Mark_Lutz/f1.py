@@ -158,7 +158,6 @@
 # print(f(1, *(2, 3,),  x=4, y=5, c=7))
 
 
-
 # def f(a, *b, c=6, **d): return (a, b, c, d)
 # print(f(1, *(2, 3,), **dict(x=4, y=5)))
 # print(f(1, *(2, 3,), **dict(x=4, y=5), c=7))
@@ -194,7 +193,6 @@
 # print('sad', 'bad', 'cat')
 import sys
 from timeit import timeit
-
 
 # l = list(range(990))
 #
@@ -290,6 +288,64 @@ from timeit import timeit
 #
 #
 # print(list(permute2(seq)))
+
+# l1 = 'sadm'
+# l2 = '9827'
+# l3 = '!@#$'
+#
+#
+# def myzip(*seq):
+#     all_list = []
+#     for i in seq:
+#         all_list.append(list(i))
+#     out_list = []
+#     while all(all_list):
+#         rest = ()
+#         for c in all_list:
+#             rest += tuple(c.pop(0))
+#         out_list.append(rest)
+#     return out_list
+
+# def myzip(*seq):
+#     """generator"""
+#     all_list = []
+#     for i in seq:
+#         all_list.append(list(i))
+#     while all(all_list):
+#         rest = ()
+#         for c in all_list:
+#             rest += tuple(c.pop(0))
+#         yield tuple(rest)
+
+
+# def myzip_short(*seqs):
+#     seqs_list = [list(s) for s in seqs]
+#     while all(seqs_list):
+#         yield tuple(i.pop(0) for i in seqs_list)
+#
+#
+# def myzip_very_short(*seq):
+#     min_length = min(len(l) for l in seq)
+#     return [tuple(s[i] for s in seq) for i in range(min_length)]
+#
+#
+# answer = list(myzip(l1, l2, l3))
+# answer2 = list(myzip_short(l1, l2, l3))
+# answer3 = myzip_very_short(l1, l2, l3)
+#
+#
+# print(answer)
+# print(answer2)
+# print(answer3)
+
+import time
+
+
+
+
+
+
+
 
 
 
