@@ -106,13 +106,29 @@
 #
 #
 # print(countdown(20))
+import math
+from timeit import timeit
 
 
-def my_fact(n):
-    return n if n == 1 else n * my_fact(n - 1)
-
-
-print(my_fact(6))
+# def my_fact1(n):
+#     return n if n == 1 else n * my_fact1(n - 1)
+#
+#
+# def my_fact3(n):
+#     res = 1
+#     length_fact = list(range(2, n + 1))
+#     for x in length_fact:
+#         res *= x
+#     return res
+#
+#
+# def my_fact4(n):
+#     return math.factorial(n)
+#
+#
+# print(timeit("my_fact1(6)", globals=globals(), number=10000))
+# print(timeit("my_fact3(6)", globals=globals(), number=10000))
+# print(timeit("my_fact4(6)", globals=globals(), number=10000))
 
 
 
