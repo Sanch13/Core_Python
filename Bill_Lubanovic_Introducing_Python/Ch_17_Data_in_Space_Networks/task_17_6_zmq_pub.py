@@ -2,7 +2,7 @@ import re
 import time
 import zmq
 import pickle
-from Ch_12_Wrangle_and_Mangle_Data.Wrangl_and_Mangle_Data import mammoth
+from Bill_Lubanovic_Introducing_Python.Ch_12_Wrangle_and_Mangle_Data.Wrangl_and_Mangle_Data import mammoth
 
 poem_list = re.findall(r"\b[a-zA-Z][^\d\s]*\b", mammoth)   # выделяем только слова из стиха mammoth
 # print(*[poem_list[i:i + 7] for i in range(0, len(poem_list), 7)], sep='\n')

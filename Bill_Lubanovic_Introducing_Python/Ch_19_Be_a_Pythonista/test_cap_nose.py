@@ -1,4 +1,4 @@
-from Ch_19_Be_a_Pythonista import cap_2
+from Bill_Lubanovic_Introducing_Python.Ch_19_Be_a_Pythonista import cap_2
 from nose.tools import eq_
 
 

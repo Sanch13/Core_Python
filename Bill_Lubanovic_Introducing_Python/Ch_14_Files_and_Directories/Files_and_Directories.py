@@ -265,11 +265,11 @@ os.listdir('poems')          # []
 # os.mkdir('poems\mcinytre')
 os.listdir('poems')          # ['mcinytre']
 """Создайте в подкаталоге файл"""
-file = open(r'poems\mcinytre\the_good_man', 'wt')
+file = open(r'poems/mcinytre/the_good_man', 'wt')
 file.write('''Cheerful and happy was his mood''')
 file.close()
 """проверьте, что получилось. Хорошо, если бы файл там был"""
-os.listdir('poems\mcinytre')    # ['the_good_man']
+os.listdir('poems/mcinytre')    # ['the_good_man']
 """Изменяем текущий каталог с помощью функции chdir()"""
 os.chdir('poems')
 os.listdir()     # ['mcinytre']
@@ -320,7 +320,7 @@ file_path = Path('eek') / 'urk' / 'snort.txt'
 ###################################################################################################
 """14.3. Присвойте строку This is a test of the emergency text system переменной test1
 и запишите эту переменную в файл с именем test.txt."""
-os.chdir('..')
+os.chdir('../..')
 test1 = "This is a test of the emergency text system"
 with open('test.txt', 'wt') as file:
     file.write(test1)

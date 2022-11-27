@@ -1,5 +1,5 @@
 import unittest
-from Ch_19_Be_a_Pythonista import cap
+from Bill_Lubanovic_Introducing_Python.Ch_19_Be_a_Pythonista import cap
 
 
 class TestCap(unittest.TestCase):

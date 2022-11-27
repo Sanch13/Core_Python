@@ -1,4 +1,4 @@
-from Ch_2_Data_Types.Python_types import replace_sep_in_sting
+from Bill_Lubanovic_Introducing_Python.Ch_2_Data_Types.Python_types import replace_sep_in_sting
 import string
 
 replace_sep_in_sting("""

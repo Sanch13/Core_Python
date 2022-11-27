@@ -1,4 +1,4 @@
-from Ch_12_Wrangle_and_Mangle_Data.Wrangl_and_Mangle_Data import mammoth
+from Bill_Lubanovic_Introducing_Python.Ch_12_Wrangle_and_Mangle_Data.Wrangl_and_Mangle_Data import mammoth
 import re, time
 import zmq
 import pickle
