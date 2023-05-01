@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h2>{{the_title}}</h2>
+
+    <table>
+        <p> Use submitted the following data </p>
+        <tr><td>Phrase:</td><td>{{the_phrase}}</td></tr>
+        <tr><td>Letters:</td><td>{{the_letters}}</td></tr>
+    </table>
+
+<h2>Answer : {{the_result}}</h2>
+
+{% endblock %}
