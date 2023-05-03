@@ -1,8 +1,13 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
+# session - global dict which save state web-app.
+# technology of state creation in Flask on top of a web without a state
 from markupsafe import escape
 from dbcm import UseDatabase
+from checker import check_logged_in
 
 app = Flask(__name__)
+
+app.secret_key = "My_secret_key"    # key to init cookie
 
 # We need four params to connect to the DB
 app.config["dbconfig"] = {"host": "127.0.0.1",  # Database IP address to connect
@@ -60,6 +65,7 @@ def save_data_to_the_db_use_class(req: "flask_request", res: str) -> None:
 
 @app.route("/search4", methods=["POST"])
 def do_search() -> "html":
+    """Return result  """
     phrase = request.form.get("phrase")
     letters = request.form.get("letters")
     result = str(search4letters(phrase=phrase, letters=letters))
@@ -80,7 +86,9 @@ def entry_page() -> "html":
 
 
 @app.route("/viewlog")
+@check_logged_in  # check login user?
 def view_the_log() -> "html":
+    """Display log from DB"""
     # content = []
     # with open("vsearch.log") as file:
     #     for line in file:
@@ -97,6 +105,20 @@ def view_the_log() -> "html":
                            the_title="Viewlog",
                            the_row_titles=titles,
                            the_data=content)
+
+
+@app.route("/login")
+def do_login() -> str:
+    """Login user in the system"""
+    session["logged_in"] = True     # create logged_in for the user
+    return "You are now logged in"
+
+
+@app.route("/logout")
+def do_logout() -> str:
+    """Logout user in the system"""
+    session.pop("logged_in", False)    # delete logged_in of the user
+    return "You are now logged out"
 
 
 if __name__ == '__main__':
