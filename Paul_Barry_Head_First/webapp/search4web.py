@@ -4,12 +4,12 @@ from flask import Flask, render_template, request, session
 # session - global dict which save state web-app.
 # technology of state creation in Flask on top of a web without a state
 from markupsafe import escape
-from dbcm import UseDatabase
+from dbcm import UseDatabase, ConnectionError, CredentialsError
 from checker import check_logged_in
 
 app = Flask(__name__)
 
-app.secret_key = "My_secret_key"    # key to init cookie
+app.secret_key = "My_secret_key"  # key to init cookie
 
 # We need four params to connect to the DB
 app.config["dbconfig"] = {"host": "127.0.0.1",  # Database IP address to connect
@@ -101,28 +101,35 @@ def view_the_log() -> "html":
     #         for item in line.split("|"):
     #             content[-1].append(escape(item))
     # titles = ("Form DATA", "Remote addr", "User_agent", "Results")
-    with UseDatabase(app.config.get("dbconfig")) as cursor:
-        _SQL = """select ts, phrase, letters, ip, browser_string, results from log"""
-        cursor.execute(_SQL)  # read data from the table log
-        content = cursor.fetchall()  # get all the records from mysql
-    titles = ("ts", "phrase", "letters", "Remote addr", "User_agent", "Results")
-    return render_template("viewlog.html",
-                           the_title="Viewlog",
-                           the_row_titles=titles,
-                           the_data=content)
+    try:
+        with UseDatabase(app.config.get("dbconfig")) as cursor:
+            _SQL = """select ts, phrase, letters, ip, browser_string, results from log"""
+            cursor.execute(_SQL)  # read data from the table log
+            content = cursor.fetchall()  # get all the records from mysql
+            titles = ("ts", "phrase", "letters", "Remote addr", "User_agent", "Results")
+        return render_template("viewlog.html",
+                               the_title="Viewlog",
+                               the_row_titles=titles,
+                               the_data=content)
+    except ConnectionError as error:
+        print(f"Is your DB switched on? : {error}")
+    except CredentialsError as error:
+        print(f"User-ID/Password issues : {error}")
+    except Exception as error:
+        print(f"Something went wrong : {error}")
 
 
 @app.route("/login")
 def do_login() -> str:
     """Login user in the system"""
-    session["logged_in"] = True     # create logged_in for the user
+    session["logged_in"] = True  # create logged_in for the user
     return "You are now logged in"
 
 
 @app.route("/logout")
 def do_logout() -> str:
     """Logout user in the system"""
-    session.pop("logged_in", False)    # delete logged_in of the user
+    session.pop("logged_in", False)  # delete logged_in of the user
     return "You are now logged out"
 
 

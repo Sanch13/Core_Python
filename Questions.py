@@ -22,12 +22,12 @@ def square_it(func):
 
 
 @square_it
-@document_it
+# @document_it
 def add_ints(a, b):
     return a + b
 
 
-print(add_ints(3, 5))
+# print(add_ints(3, 5))
 
 
 # @document_it
@@ -61,12 +61,12 @@ def decorate_2(func):
     return wrapper_2
 
 
-# @decorate_2
-# @decorate_1
-# def say_word_times(words, times):
-#     return f'I say {words * times} .'
-#
-# print(say_word_times('Hi!', 2))
+@decorate_2
+@decorate_1
+def say_word_times(words, times):
+    return f'I say {words * times} .'
+
+print(say_word_times('Hi!', 2))
 
 # Do it 1, I am decorate_2
 # Do it 2, I am decorate_1
