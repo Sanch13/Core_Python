@@ -4,7 +4,9 @@ from flask import Flask, render_template, request, session
 # session - global dict which save state web-app.
 # technology of state creation in Flask on top of a web without a state
 from markupsafe import escape
-from dbcm import UseDatabase, ConnectionError, CredentialsError
+
+from Paul_Barry_Head_First.webapp.dbcm import SQLError
+from dbcm import UseDatabase, ConnectError, CredentialsError
 from checker import check_logged_in
 
 app = Flask(__name__)
@@ -103,20 +105,24 @@ def view_the_log() -> "html":
     # titles = ("Form DATA", "Remote addr", "User_agent", "Results")
     try:
         with UseDatabase(app.config.get("dbconfig")) as cursor:
-            _SQL = """select ts, phrase, letters, ip, browser_string, results from log"""
+            _SQL = """select ts, phrase, letters, ip, browser_string, results 
+                      from log1"""
             cursor.execute(_SQL)  # read data from the table log
             content = cursor.fetchall()  # get all the records from mysql
-            titles = ("ts", "phrase", "letters", "Remote addr", "User_agent", "Results")
+        titles = ("ts", "phrase", "letters", "Remote addr", "User_agent", "Results")
         return render_template("viewlog.html",
                                the_title="Viewlog",
                                the_row_titles=titles,
                                the_data=content)
-    except ConnectionError as error:
-        print(f"Is your DB switched on? : {error}")
+    except ConnectError as error:
+        print(f"Is your DB switched on? : {error}", str(error))
     except CredentialsError as error:
         print(f"User-ID/Password issues : {error}")
+    except SQLError as error:
+        print(f"Is your query correct? : {error}")
     except Exception as error:
         print(f"Something went wrong : {error}")
+    return "Error"
 
 
 @app.route("/login")

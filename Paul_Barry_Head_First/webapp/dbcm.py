@@ -1,7 +1,7 @@
 import mysql.connector
 
 
-class ConnectionError(Exception):
+class ConnectError(Exception):
     pass
 
 
@@ -25,7 +25,7 @@ class UseDatabase:
             self.cursor = self.conn.cursor()  # create cursor-object.
             return self.cursor  # return self.cursor()
         except mysql.connector.errors.InterfaceError as error:
-            raise ConnectionError(error)  # display error
+            raise ConnectError(error)  # display error
         except mysql.connector.errors.ProgrammingError as error:
             raise CredentialsError(error)  # display error
 
@@ -33,3 +33,7 @@ class UseDatabase:
         self.conn.commit()  # write to the DB immediately
         self.cursor.close()  # close the cursor-object.
         self.conn.close()  # close the connection with DB
+        if exc_type is mysql.connector.errors.ProgrammingError:
+            raise SQLError(exc_val)
+        elif exc_type:
+            raise exc_type(exc_val)
