@@ -1,3 +1,5 @@
+from time import sleep
+
 from flask import Flask, render_template, request, session
 # session - global dict which save state web-app.
 # technology of state creation in Flask on top of a web without a state
@@ -71,7 +73,10 @@ def do_search() -> "html":
     result = str(search4letters(phrase=phrase, letters=letters))
     # log_request(req=request, res=result)
     # save_to_db_log_request(req=request, res=result)
-    save_data_to_the_db_use_class(req=request, res=result)
+    try:
+        save_data_to_the_db_use_class(req=request, res=result)
+    except Exception as err:
+        print("Error : ", str(err))
     return render_template("results.html",
                            the_title="Hello RESULT",
                            the_result=result,
@@ -97,10 +102,10 @@ def view_the_log() -> "html":
     #             content[-1].append(escape(item))
     # titles = ("Form DATA", "Remote addr", "User_agent", "Results")
     with UseDatabase(app.config.get("dbconfig")) as cursor:
-        _SQL = """select phrase, letters, ip, browser_string, results from log"""
+        _SQL = """select ts, phrase, letters, ip, browser_string, results from log"""
         cursor.execute(_SQL)  # read data from the table log
         content = cursor.fetchall()  # get all the records from mysql
-    titles = ("phrase", "letters", "Remote addr", "User_agent", "Results")
+    titles = ("ts", "phrase", "letters", "Remote addr", "User_agent", "Results")
     return render_template("viewlog.html",
                            the_title="Viewlog",
                            the_row_titles=titles,
