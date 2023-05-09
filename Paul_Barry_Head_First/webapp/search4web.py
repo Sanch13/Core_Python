@@ -1,6 +1,7 @@
+import time
 from time import sleep
-
-from flask import Flask, render_template, request, session
+from threading import Thread
+from flask import Flask, render_template, request, session, copy_current_request_context
 # session - global dict which save state web-app.
 # technology of state creation in Flask on top of a web without a state
 from markupsafe import escape
@@ -51,32 +52,37 @@ def log_request(req: "flask_request", res: str) -> None:
 #     cursor.close()  # close the cursor-object.
 #     conn.close()  # close the connection with DB
 
-def save_data_to_the_db_use_class(req: "flask_request", res: str) -> None:
-    """Save data with use class"""
-    with UseDatabase(app.config.get("dbconfig")) as cursor:
-        _SQL = """insert into log
-        (phrase, letters, ip, browser_string, results)
-        values
-        (%s, %s, %s, %s, %s )"""  # create sql template for write data for column
-        cursor.execute(_SQL,
-                       (req.form.get("phrase"),
-                        req.form.get("letters"),
-                        req.remote_addr,
-                        str(req.user_agent),
-                        res)
-                       )  # write data to the columns
-
 
 @app.route("/search4", methods=["POST"])
 def do_search() -> "html":
     """Return result  """
+
+    @copy_current_request_context
+    def save_data_to_the_db_use_class(req: "flask_request", res: str) -> None:
+        """Save data with use class"""
+        time.sleep(10)
+        with UseDatabase(app.config.get("dbconfig")) as cursor:
+            _SQL = """insert into log
+            (phrase, letters, ip, browser_string, results)
+            values
+            (%s, %s, %s, %s, %s )"""  # create sql template for write data for column
+            cursor.execute(_SQL,
+                           (req.form.get("phrase"),
+                            req.form.get("letters"),
+                            req.remote_addr,
+                            str(req.user_agent),
+                            res)
+                           )  # write data to the columns
+
     phrase = request.form.get("phrase")
     letters = request.form.get("letters")
     result = str(search4letters(phrase=phrase, letters=letters))
     # log_request(req=request, res=result)
     # save_to_db_log_request(req=request, res=result)
     try:
-        save_data_to_the_db_use_class(req=request, res=result)
+        # save_data_to_the_db_use_class(req=request, res=result)
+        t = Thread(target=save_data_to_the_db_use_class, args=(request, result))
+        t.start()
     except Exception as err:
         print("Error : ", str(err))
     return render_template("results.html",
@@ -106,7 +112,7 @@ def view_the_log() -> "html":
     try:
         with UseDatabase(app.config.get("dbconfig")) as cursor:
             _SQL = """select ts, phrase, letters, ip, browser_string, results 
-                      from log1"""
+                      from log"""
             cursor.execute(_SQL)  # read data from the table log
             content = cursor.fetchall()  # get all the records from mysql
         titles = ("ts", "phrase", "letters", "Remote addr", "User_agent", "Results")
