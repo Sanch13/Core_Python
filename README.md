@@ -1,4 +1,4 @@
-# Core_Python
+# This is my plan for education Python
 Core_Python (Jager - Egor, BogdanK - Bogdan)
 1) Read book Python Core + tasks + OOP
 2) SQL-ex.com 50 tasks (level 1-2, may be 3 level)
