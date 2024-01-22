@@ -1,8 +1,10 @@
 # Тестовые функции должны начинаться с test_,
 # и если вы хотите использовать классы, они также должны начинаться с Test
 # pytest запустит все файлы формы test_*.py или *_test.py в текущем каталоге и его подкаталогах.
+import json
 
 import pytest
+import requests
 
 
 def func(x):
@@ -31,9 +33,9 @@ class TestClass:
         x = "This"
         assert 'h' in x
 
-    def test_two(self):
-        x = "hello"
-        assert hasattr(x, "hello")
+    # def test_two(self):
+    #     x = "hello"
+    #     assert hasattr(x, "hello")
 
 
 # атрибуты, добавленные на уровне класса, являются атрибутами класса ,
@@ -46,5 +48,13 @@ class TestClassDemoInstance:
         self.value = 1
         assert self.value == 1
 
-    def test_two(self):
-        assert self.value == 1
+    # def test_two(self):
+    #     assert self.value == 1
+
+
+def test_ping(client):
+    url = requests.get(url="http://0.0.0.0:8000/ping/")
+    response = client.get(url)
+    content = json.loads(response.content)
+    assert response.status_code == 200
+    assert content["ping"] == "pong!"
