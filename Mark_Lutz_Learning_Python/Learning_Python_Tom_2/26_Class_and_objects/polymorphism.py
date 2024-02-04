@@ -16,6 +16,7 @@ class Employee:  # Универсальный суперкласс
 
 
 class Engineer(Employee):  # Специализированный подкласс
+    age = 22
 
     def compute_salary(self):
         """Из-за того, что версия computeSalary находится ниже в дереве классов, она заместит
@@ -25,3 +26,7 @@ class Engineer(Employee):  # Специализированный подклас
 
 alex = Engineer()
 print(type(Engineer), alex.__class__.__name__)
+alex.__setattr__("name", "Alex")
+print(alex.__dict__)
+print(Employee.compute_salary(alex))
+print(alex.age)
