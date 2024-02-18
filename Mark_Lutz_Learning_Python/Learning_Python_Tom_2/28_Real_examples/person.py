@@ -11,7 +11,7 @@ class Person:
         self.pay = int(self.pay * (1 + percent / 100))
 
     def __repr__(self):
-        return f"{self.name} [{self.pay} $]"
+        return f"{self.name} {self.job} [{self.pay} $]"
 
 
 if __name__ == '__main__':
@@ -24,4 +24,4 @@ if __name__ == '__main__':
     sue.give_raise(10)
     print(sue.name, sue.pay)
     print(bob)
-    print(sue)
+    print(sue)  # Sue Jones [110000 $]
