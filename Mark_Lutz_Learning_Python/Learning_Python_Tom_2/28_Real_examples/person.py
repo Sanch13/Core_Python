@@ -1,4 +1,7 @@
-class Person:
+from classtools import AttrDisplay
+
+
+class Person(AttrDisplay):
     def __init__(self, name, job=None, pay=0):
         self.name = name
         self.job = job
@@ -10,8 +13,8 @@ class Person:
     def give_raise(self, percent):
         self.pay = int(self.pay * (1 + percent / 100))
 
-    def __repr__(self):
-        return f"{self.name} {self.job} [{self.pay} $]"
+    # def __repr__(self):
+    #     return f"{self.name} {self.job} [{self.pay} $]"
 
 
 if __name__ == '__main__':
