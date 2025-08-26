@@ -3,4 +3,4 @@ venv
 *.db
 
 
-/DDD/library/.env
+/Other/DDD/library/.env
