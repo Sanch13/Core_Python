@@ -3,4 +3,4 @@ venv
 *.db
 
 
-/Other/DDD/library/.env
+/_Other_practice_python/DDD/library/.env
