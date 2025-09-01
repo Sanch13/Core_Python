@@ -8,22 +8,31 @@
 
 class Stack:
     def __init__(self):
-        self.stack = []
+        self.items = []
 
     def push(self, item):
-        self.stack.append(item)
+        """Добавить элемент на вершину стека"""
+        self.items.append(item)
 
     def pop(self):
-        return self.stack.pop()
+        """Удалить и вернуть верхний элемент"""
+        if not self.is_empty():
+            return self.items.pop()
+        raise IndexError("Попытка извлечения из пустого стека")
 
     def peek(self):
-        return self.stack[-1]
+        """Посмотреть верхний элемент без удаления"""
+        if not self.is_empty():
+            return self.items[-1]
+        return None
 
     def is_empty(self):
-        return len(self.stack) == 0
+        """Проверить, пуст ли стек"""
+        return len(self.items) == 0
 
     def size(self):
-        return len(self.stack)
+        """Размер стека"""
+        return len(self.items)
 
 
 stack = Stack()
