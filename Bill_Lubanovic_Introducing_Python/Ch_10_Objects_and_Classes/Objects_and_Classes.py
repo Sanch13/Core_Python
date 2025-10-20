@@ -320,7 +320,7 @@ class Thing3:
 """10.5. Создайте словарь со следующими ключами и значениями: 'name': 'Hydrogen', 'symbol': 'H',
 'number': 1. Далее создайте объект с именем hydrogen класса Element с помощью этого словаря."""
 d = {'name': 'Hydrogen', 'symbol': 'H', 'number': 1}
-# hydrogen = Element(d['name'], d['symbol'], d['number'])   # from book
+# hydrogen = Element(d['name'], d['symbol'], d['number'])   # from Aleksandr Shvec - design patterns
 # hydrogen = Element(**d)
 ###################################################################################################
 """10.6. Для класса Element определите метод с именем dump(), который выводит на экран 

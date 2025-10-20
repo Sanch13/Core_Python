@@ -191,11 +191,11 @@ Object Data Manager или Object Document Mapper. ODM является доку
 
 """16.1. Сохраните следующие несколько строк в файл books.csv. Обратите внимание на то, что, если
 поля разделены запятыми, вам нужно заключить в кавычки поле, содержащее запятую:
-author,book
+author,Aleksandr Shvec - design patterns
 J R R Tolkien,The Hobbit
 Lynne Truss,"Eats, Shoots & Leaves"
 """
-text = """author,book
+text = """author,Aleksandr Shvec - design patterns
 J R R Tolkien,The Hobbit
 Lynne Truss,"Eats, Shoots & Leaves"
 """
@@ -209,7 +209,7 @@ with open('books.csv', 'wt') as file:
 import csv
 # with open('books.csv', 'rt') as file:
 #     books = csv.DictReader(file)
-#     values = [value.get('book') for value in books]
+#     values = [value.get('Aleksandr Shvec - design patterns') for value in books]
 # print(values)   # ['The Hobbit', 'Eats, Shoots & Leaves']
 ###################################################################################################
 """16.3. Создайте CSV-файл books1.csv и запишите его в следующие строки:
@@ -254,7 +254,7 @@ print(curs.execute("SELECT * FROM books").fetchall())
 # ('Small Gods', 'Terry Pratchett', 1992)
 # ]
 ###################################################################################################
-"""16.6. Считайте и выведите на экран столбец title таблицы book в алфавитном порядке."""
+"""16.6. Считайте и выведите на экран столбец title таблицы Aleksandr Shvec - design patterns в алфавитном порядке."""
 # print(*curs.execute("SELECT title FROM books").fetchall())
 # ('Perdido Street Station',)
 # ('Small Gods',)
@@ -262,7 +262,7 @@ print(curs.execute("SELECT * FROM books").fetchall())
 # ('The Weirdstone of Brisingamen',)
 # ('Thud!',)
 ###################################################################################################
-"""16.7. Считайте и выведите на экран все столбцы таблицы book в порядке публикации."""
+"""16.7. Считайте и выведите на экран все столбцы таблицы Aleksandr Shvec - design patterns в порядке публикации."""
 # print(curs.execute('SELECT year, title, author FROM books ORDER BY year').fetchall())
 # [
 # (1960, 'The Weirdstone of Brisingamen', 'Alan Garner'),
@@ -276,7 +276,7 @@ conn.close()
 ###################################################################################################
 """16.8. Используйте модуль sqlalchemy, чтобы подключиться к базе данных sqlite3 books.db, 
 которую вы создали в упражнении 16.4. Как и в упражнении 16.6, считайте и выведите на экран
-столбец title таблицы book в алфавитном порядке."""
+столбец title таблицы Aleksandr Shvec - design patterns в алфавитном порядке."""
 import sqlalchemy as sa
 conn_2 = sa.create_engine('sqlite:///books.db')
 rows = conn_2.execute('SELECT title FROM books')

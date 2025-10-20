@@ -191,12 +191,12 @@ About to fall and crush them soon.
 """12.7. Найдите все слова, которые заканчиваются на букву r."""
 re.findall(r'\w*r\b', mammoth)       # my version
 # ['your', 'fair', 'Or', 'scar', 'Mr', 'far', 'For', 'your', 'or']
-re.findall(r'\b\w*r\b', mammoth)     # the version from book
+re.findall(r'\b\w*r\b', mammoth)     # the version from Aleksandr Shvec - design patterns
 ###################################################################################################
 """12.8. Найдите все слова, которые содержат три гласные подряд."""
 re.findall(r'\b[a-zA-Z]*[eioau]{3}[a-zA-Z]*\b', mammoth)            # my version
 # ['queen', 'quietly', 'beau', 'queen', 'squeeze', 'queen']
-re.findall(r'\b\w*[aeiou]{3}[^aeiou\s]*\w*\b', mammoth)             # the version from book
+re.findall(r'\b\w*[aeiou]{3}[^aeiou\s]*\w*\b', mammoth)             # the version from Aleksandr Shvec - design patterns
 ###################################################################################################
 """12.9. Используйте метод unhexlify для того, чтобы преобразовать шестнадцатеричную строку,
 созданную путем объединения двух строк для размещения на странице, в переменную типа bytes 
@@ -221,7 +221,7 @@ gif = binascii.unhexlify(str_1)
 на экран эти значения для переменной gif. Равны ли они 1? YES
 """
 # print(struct.unpack('<hh', gif[6:10]))            # (1, 1) my version
-# width, height = struct.unpack('<HH', gif[6:10])   # (1, 1)    from book
+# width, height = struct.unpack('<HH', gif[6:10])   # (1, 1)    from Aleksandr Shvec - design patterns
 ###################################################################################################
 
 

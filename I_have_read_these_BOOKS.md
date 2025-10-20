@@ -5,4 +5,5 @@
 5) Paul Barry - Head First
 6) Bill_Lubanovic - FastAPI
 7) Cory_Althoff - The_Self_Taught_Computer_Scientist
+8) Александр Швец - Погружение в Паттерны Проектирования
 

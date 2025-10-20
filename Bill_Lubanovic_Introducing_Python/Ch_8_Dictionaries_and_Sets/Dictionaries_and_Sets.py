@@ -188,7 +188,7 @@ fs = frozenset([3, 2, 1])  # fs = frozenset({1, 2, 3})
 e2f = {"dog": "chien", "cat": "chat", "walrus": "morse"}
 ###################################################################################################
 """8.2. Используя словарь e2f, выведите французский вариант слова walrus"""
-# e2f['walrus']    # morse # in book
+# e2f['walrus']    # morse # in Aleksandr Shvec - design patterns
 # print(*(value for key, value in e2f.items() if key in "walrus"))    # morse
 ###################################################################################################
 """8.3.Создайте французско-английский словарь f2e на основе словаря e2f. Используйте метод items."""
@@ -196,12 +196,12 @@ f2e = {value: key for key, value in e2f.items()}
 # {'chien': 'dog', 'chat': 'cat', 'morse': 'walrus'}
 ###################################################################################################
 """8.4. Используя словарь f2e, выведите английский вариант слова chien."""
-# f2e['chien']    # dog # in book
+# f2e['chien']    # dog # in Aleksandr Shvec - design patterns
 # print(*(value for key, value in f2e.items() if key in "chien"))    # dog
 ###################################################################################################
 """8.5. Выведите на экран множество английских слов из ключей словаря e2f."""
 set(key for key, value in e2f.items())  # {'cat', 'walrus', 'dog'}
-# set(e2f.keys()) # in book
+# set(e2f.keys()) # in Aleksandr Shvec - design patterns
 ###################################################################################################
 """8.6. Создайте многоуровневый словарь life. Используйте следующие строки для ключей верхнего 
 уровня: 'animals', 'plants' и 'other'. Сделайте так, чтобы ключ 'animals' ссылался на другой 
@@ -219,15 +219,15 @@ life = {
 ###################################################################################################
 """8.7. Выведите на экран высокоуровневые ключи словаря life"""
 # print(*(key for key in life))  # animals plants other
-# print(list(life.keys()))       # in book ['animals', 'other', 'plants']
+# print(list(life.keys()))       # in Aleksandr Shvec - design patterns ['animals', 'other', 'plants']
 ###################################################################################################
 """8.8. Выведите на экран ключи life['animals']"""
 # print(*(key for key in life['animals']))     # cats octopi emus
-# print(life['animals'].keys())                # in book ['cats', 'octopi', 'emus']
+# print(life['animals'].keys())                # in Aleksandr Shvec - design patterns ['cats', 'octopi', 'emus']
 ###################################################################################################
 """8.9. Выведите значения life['animals']['cats']."""
 # print(life.get('animals').get('cats'))     # ['Henri', 'Grumpy', 'Lucy']
-# print(life['animals']['cats'])             # in book ['Henri', 'Grumpy', 'Lucy']
+# print(life['animals']['cats'])             # in Aleksandr Shvec - design patterns ['Henri', 'Grumpy', 'Lucy']
 ###################################################################################################
 """8.10. Используйте генератор словаря, чтобы создать словарь squares. Используйте range(10), 
 чтобы получить ключи. В качестве значений используйте возведенное в квадрат значение каждого ключа.
