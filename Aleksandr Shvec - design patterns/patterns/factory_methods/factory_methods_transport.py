@@ -1,6 +1,10 @@
 """
 Фабричный метод — это порождающий паттерн проектирования, который определяет общий интерфейс для
 создания объектов в суперклассе, позволяя подклассам изменять тип создаваемых объектов.
+
+✅ Единая ответственность: Код создания объектов вынесен в отдельное место
+✅ Открыт для расширения, закрыт для модификации: Можем добавлять новые типы, не трогая базовый класс
+✅ Слабая связанность: Клиентский код не зависит от конкретных классов
 """
 
 from abc import ABC, abstractmethod
@@ -11,22 +15,16 @@ class Transport(ABC):
         self.name = name
 
     @abstractmethod
-    def deliver(self) -> str:
+    def deliver(self) -> None:
         pass
 
 
 class Truck(Transport):
-    def __init__(self, name: str):
-        super().__init__(name)
-
     def deliver(self):
         print(f"Delivering truck... -> {self.__class__.__name__} {self.name}")
 
 
-class Air(Transport):
-    def __init__(self, name):
-        super().__init__(name)
-
+class Plane(Transport):
     def deliver(self):
         print(f"Delivering air... -> {self.__class__.__name__} {self.name}")
 
@@ -44,7 +42,7 @@ class RoadLogistics(LogisticsCompany):
 
 class AirLogistics(LogisticsCompany):
     def create_transport(self, name: str) -> Transport:
-        return Air(name)
+        return Plane(name)
 
 
 if __name__ == "__main__":
