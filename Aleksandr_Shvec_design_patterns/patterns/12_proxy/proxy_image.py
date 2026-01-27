@@ -66,7 +66,18 @@ import time
 from abc import ABC, abstractmethod
 
 
-class RealImage:
+class Image(ABC):
+	@abstractmethod
+	def display(self) -> None: ...
+
+	@abstractmethod
+	def get_size(self) -> int: ...
+
+	@abstractmethod
+	def get_filename(self) -> str: ...
+
+
+class RealImage(Image):
 	IMAGE_DATABASE = {
 		"photo1.jpg": {
 			"size": 2048576,  # 2 MB
@@ -90,6 +101,68 @@ class RealImage:
 		}
 	}
 
+	def __init__(self, filename: str):
+		self._filename: str = filename
+		self._load_from_disk()
+
+	def _load_from_disk(self) -> None:
+		"""Imitate loading from disk with latency."""
+		print(f"[REAL IMAGE] Loading {self._filename} from disk... (this takes time)")
+		time.sleep(2)
+		print(f"[REAL IMAGE] Successfully loaded {self._filename} "
+		      f"({self.IMAGE_DATABASE[self._filename]['size']} bytes)")
+
+	def display(self) -> None:
+		"""Display image"""
+		data = self.IMAGE_DATABASE.get(self._filename)
+		print(f"[REAL IMAGE] Displaying: {self._filename} - {data['description']}")
+
+	def get_size(self) -> int:
+		"""Return size of image"""
+		return self.IMAGE_DATABASE.get(self._filename).get("size", 0)
+
+	def get_filename(self) -> str:
+		"""Return filename"""
+		return self._filename
+
+
+class ImageProxy(Image):
+	def __init__(self, filename: str):
+		self._filename: str = filename
+		self._real_image: RealImage | None = None
+		self._load_count: int = 0
+
+	def display(self) -> None:
+		"""Display the image, loading it first if needed."""
+		if self._real_image is None:
+			print(f"[PROXY] First access to {self._filename} - loading real image...")
+			self._real_image = RealImage(self._filename)
+			self._load_count += 1  # Увеличиваем счётчик
+		else:
+			print(f"[PROXY] Using already loaded image: {self._filename}")
+
+		self._real_image.display()
+
+	def get_size(self) -> int:
+		"""Get the image size in bytes, loading it first if needed."""
+		if self._real_image is None:
+			print(f"[PROXY] First access to {self._filename} - loading real image...")
+			self._real_image = RealImage(self._filename)
+			self._load_count += 1
+
+		return self._real_image.get_size()
+
+	def get_filename(self) -> str:
+		"""Get the filename without loading the image."""
+		return self._filename
+
+	def is_loaded(self) -> bool:
+		"""Check if the real image has been loaded."""
+		return self._real_image is not None
+
+	def get_load_count(self) -> int:
+		"""Get the number of times the image was loaded."""
+		return self._load_count
 
 
 if __name__ == "__main__":
